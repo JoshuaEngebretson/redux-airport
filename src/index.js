@@ -7,9 +7,27 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
+const startingAirlines = [
+    {
+        name: 'Ryan Air',
+        id: 1
+    },
+    {
+        name: 'Spirit',
+        id: 2
+    },
+    {
+        name: 'Sun Country',
+        id: 3
+    },
+    {
+        name: 'Delta',
+        id: 4
+    },
+]
 
 /** TODO: Add REDUCERS */
-const activeAirlines = (state=[], action) => {
+const activeAirlines = (state=startingAirlines, action) => {
     if (action.type === 'ADD_AIRLINE') {
         // Create a variable based on what is being sent over
         const newAirlineName = action.payload;
