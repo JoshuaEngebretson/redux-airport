@@ -40,8 +40,8 @@ const activeAirlines = (state=startingAirlines, action) => {
         // Create an object that includes both variables
         //  This is now the newAirline
         const newAirline = {
-            id: newId,
-            name: newAirlineName
+            name: newAirlineName,
+            id: newId
         };
         // Cant MUTATE state, so here is a copy
         const copyOfState = [...state];
@@ -49,6 +49,9 @@ const activeAirlines = (state=startingAirlines, action) => {
         copyOfState.push(newAirline);
         // return the copy (thus making state now the copy.)
         return copyOfState;
+
+        // faster way to do it with less code
+        // return [...state, action.payload];
     }
     // If the action.type does not match anything above, 
     //  return state as it currently is.

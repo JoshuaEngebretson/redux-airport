@@ -1,18 +1,36 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
-  const airlines = useSelector((store) => store.activeAirlines)
-  console.log('airlines', airlines);
+  const [airlineInput, setAirlineInput] = useState('');
 
-  // const airlineKeys = airlines.map(Object.keys());
-  // console.log('airlineKeys', airlineKeys);
+  const airlines = useSelector((store) => store.activeAirlines);
+
+  const dispatch = useDispatch();
+
+  const addAirline = (event) => {
+    event.preventDefault();
+
+    // Send a dispatch to redux-land. It will need to include
+    //  the value of airlineInput as the payload.
+    dispatch({
+      type: 'ADD_AIRLINE',
+      payload: airlineInput
+    })
+    setAirlineInput('')
+  }
 
   return (
     <div>
       <h1>Redux Airport</h1>
-      <input placeholder='Airline Name' />
-      <button>Add Airline</button>
+      <form onSubmit={addAirline}>
+        <input 
+          placeholder='Airline Name'
+          value={airlineInput}
+          onChange={(event) => setAirlineInput(event.target.value)}
+        />
+        <button>Add Airline</button>
+      </form>
       <table>
         <thead>
           <tr>
@@ -28,7 +46,6 @@ function App() {
         {/* Airlines should be listed here */}
         <tbody>
           {airlines.map((airline) => {
-            console.log(Object.keys(airline));
             return (
               <tr key={airline.id}>
                 <td>{airline.name}</td>

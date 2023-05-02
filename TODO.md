@@ -6,6 +6,6 @@
   * Make a reducer (array of airlines) 
   * Make the provider 
 
-3. Need to make a form and a table ❌✅
+3. Need to make a form and a table ✅✅
   * Form for adding airlines
   * Table for showing airlines
